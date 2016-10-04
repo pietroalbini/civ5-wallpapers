@@ -40,7 +40,11 @@ directory use the ``--output PATH`` flag.
 To update the wallpaper, you can execute this command:
 
 ```
-$ civ5-wallpaper set-random YOUR-DE
+# With GNOME
+$ civ5-wallpaper set-random gnome
+
+# With Unity
+$ civ5-wallpaper set-random unity
 ```
 
 Currently, only the `unity` and `gnome` desktop environments are supported. If
@@ -49,7 +53,11 @@ you want to contribute support for another DE please send a pull request!
 You can execute this every hour by adding this line to the crontab:
 
 ```
-0 * * * * /usr/local/bin/civ5-wallpapers set-random
+# With GNOME
+0 * * * * /usr/local/bin/civ5-wallpapers set-random gnome
+
+# With Unity
+0 * * * * /usr/local/bin/civ5-wallpapers set-random unity
 ```
 
 [civ5]: http://store.steampowered.com/app/8930
