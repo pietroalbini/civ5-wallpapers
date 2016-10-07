@@ -8,7 +8,7 @@ favourite Linux distro.
 **You must have a legit copy of Civilization V installed on your computer to
 use this program.**
 
-### Installation
+### Installation and configuration
 
 In order to install this tool, be sure to have Civilization V installed on your
 computer, along with Python 3 and ImageMagick (you can find those in your
@@ -17,6 +17,19 @@ distro's repositories). Then install the tool with PIP:
 ```
 $ sudo pip install civ5-wallpapers
 ```
+
+Finally, you can use the interactive setup to get everything working: just type
+this command:
+
+```
+$ civ5-wallpapers setup
+```
+
+It will try to extract the wallpapers from the game files, and ask you if you
+want to put them in a slideshow. Then you're ready to go!
+
+Instead, if you want to have control on what happens, you can use the low-level
+commands.
 
 ### Extracting the wallpapers from the game files
 
