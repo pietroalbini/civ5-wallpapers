@@ -17,7 +17,6 @@ setuptools.setup(
 
     packages = [
         "civ5_wallpapers",
-        "civ5_wallpapers.vendor",
     ],
 
     entry_points = {

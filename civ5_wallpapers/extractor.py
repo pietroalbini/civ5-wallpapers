@@ -15,11 +15,10 @@
 
 import os
 import tempfile
-import shutil
 import re
 import subprocess
 
-from .vendor import unfpk
+from . import fpk
 
 
 PACKS_DIR = "resource/dx9"
@@ -39,18 +38,17 @@ def find_packs(resources_dir):
                 yield os.path.join(base, file)
 
 
-def extract_pack(pack, dest):
+def extract_pack(path, dest):
     """Extract wallpapers from a single .fpk file"""
-    tmp = tempfile.mkdtemp()
+    pack = fpk.open(path)
 
-    # Unpack the .fpk file
-    with open(pack, "rb") as pack_file:
-        unfpk.unpack_fpk(pack_file, tmp)
-
-    for file in os.listdir(tmp):
+    for file in pack.files():
         for pattern in WALLPAPER_PATTERNS:
             if not pattern.match(file):
                 continue
+
+            # Extract the file from the pack
+            pack.extract(file, dest)
 
             # Convert the file from DDS to JPG and copy it
             if file.endswith(".dds"):
@@ -59,17 +57,14 @@ def extract_pack(pack, dest):
                 # Convert the image with ImageMagick
                 subprocess.call([
                     "convert",
-                    os.path.join(tmp, file),
+                    os.path.join(dest, file),
                     os.path.join(dest, jpg_file)
                 ])
-
-            # Copy the file
-            else:
-                shutil.copy(os.path.join(tmp, file), os.path.join(dest, file))
+                os.remove(os.path.join(dest, file))
 
             break
 
-    shutil.rmtree(tmp)
+    pack.close()
 
 
 def extract_wallpapers(resources_dir, dest):
