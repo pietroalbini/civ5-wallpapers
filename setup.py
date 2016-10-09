@@ -37,7 +37,7 @@ import setuptools
 
 setuptools.setup(
     name = "civ5-wallpapers",
-    version = "1.0",
+    version = "1.0.0",
     url = "https://github.com/pietroalbini/civ5-wallpapers",
 
     license = "GPL-3+",
